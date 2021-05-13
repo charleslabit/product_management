@@ -12,7 +12,7 @@
    
 # Installation 
 ##### 1.) Clone the Project Repositories
-##### git clone https://github.com/charleslabit/product-management.git
+##### git clone https://github.com/charleslabit/product_management.git
 
 ##### 2.) In client folder run npm install
 ##### 3.) After the npm install, run npm run serve or yarn serve (if yarn is installed)
