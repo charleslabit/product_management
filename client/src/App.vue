@@ -8,8 +8,8 @@
     >
     </v-parallax>
     <v-app-bar app dark color="#1565c0">
-      <v-menu bottom left >
-        <template v-slot:activator="{ on, attrs }" >
+      <v-menu bottom left>
+        <template v-slot:activator="{ on, attrs }">
           <v-btn icon v-bind="attrs" v-on="on" class="hidden-md-and-up">
             <v-icon>mdi-menu</v-icon>
           </v-btn>
@@ -76,7 +76,10 @@
                   <v-list-item-title class="ml-2">
                     {{ item.ProductName }}
                   </v-list-item-title>
-                  <v-list-item-subtitle class="ml-3 text-truncate" style="max-width:300px">
+                  <v-list-item-subtitle
+                    class="ml-3 text-truncate"
+                    style="max-width: 300px"
+                  >
                     {{ item.ProductDescription }}
                   </v-list-item-subtitle>
                 </v-list-item-content>
@@ -113,12 +116,10 @@
 
 <script>
 import Swal from "sweetalert2";
-// import Header from '../src/components/Header'
 export default {
   name: "App",
 
   components: {
-    // Header
   },
 
   data: () => ({
@@ -154,19 +155,22 @@ export default {
     computedCartItems() {
       return this.cartItems;
     },
-    computedParallex(){
-      switch(this.$vuetify.breakpoint.name) {
-        case 'xl':{
-          return 'parallax-xl'
+    computedParallex() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xl": {
+          return "parallax-xl";
         }
-        case 'lg':{
-          return 'parallax-lg'
+        case "lg": {
+          return "parallax-lg";
+        }
+        case "md": {
+          return "parallax-md";
         }
         default: {
-          return 'parallax'
+          return "parallax";
         }
       }
-    }
+    },
   },
 
   mounted() {},
@@ -183,6 +187,11 @@ export default {
   height: auto !important;
   width: 100% !important;
   padding: 85% 0 0;
+}
+.parallax-md {
+  height: auto !important;
+  width: 100% !important;
+  padding: 140% 0 0;
 }
 
 .parallax {

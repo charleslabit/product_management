@@ -1,6 +1,5 @@
 <template>
   <div id="product" class="my-10">
-
     <v-hover v-slot:default="{ hover }">
       <v-carousel
         interval="5000"
@@ -19,20 +18,37 @@
     </v-hover>
 
     <h1 class="text-center text-h2 font-weight-thin py-10">Latest Product</h1>
-
+    <v-text-field
+      class="ma-2 mx-auto"
+      style="width: 50%"
+      dense
+      hide-details
+      outlined
+      clearable
+      append-icon="mdi-magnify"
+      label="Search"
+      v-model="searchProduct"
+    ></v-text-field>
     <v-row dense class="ma-4">
       <v-col
         lg="3"
         md="4"
         sm="6"
         cols="12"
-        v-for="(item, index) in productItems"
+        v-for="(item, index) in pageData"
         :key="item.ProductName"
       >
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <v-card v-on="on" v-bind="attrs" flat class="ma-3">
-              <v-img :src="item.ProductPhoto" class="mx-auto center"> </v-img>
+              <div style="width: 300px; height: 200px">
+                <v-img
+                  :src="item.ProductPhoto"
+                  class="mx-auto"
+                  style="height: 200px"
+                >
+                </v-img>
+              </div>
               <div class="text-right pa-0 ma-0 my-2">
                 <span v-if="item.quantity > 0">
                   Current Stock:
@@ -76,20 +92,31 @@
         </v-tooltip>
       </v-col>
     </v-row>
-    <br>
-    <Footer/>>  
+    <v-pagination
+      v-model="pageNumber"
+      :length="pageLength"
+      :total-visible="5"
+      prev-icon="mdi-menu-left"
+      next-icon="mdi-menu-right"
+    ></v-pagination>
+    <br />
+    <br />
+    <Footer />>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import Footer from '../components/Footer'
+import Footer from "../components/Footer";
 export default {
-  components:{
-Footer
+  components: {
+    Footer,
   },
   data: () => ({
     productItems: [],
+    pageNumber: 1,
+    pageRow: 5,
+    searchProduct: "",
   }),
   created() {
     this.getRecord();
@@ -112,6 +139,9 @@ Footer
             rec.price = Math.floor(Math.random() * 1000);
             rec.order = 0;
             return rec;
+          })
+          .sort((a, b) => {
+            return new Date(b.CreatedDate) - new Date(a.CreatedDate);
           });
       });
     },
@@ -122,7 +152,51 @@ Footer
         return rec.isFeatured;
       });
     },
-    
+    computedProductItems() {
+      return this.productItems.filter((rec) => {
+        if (this.searchProduct) {
+          return (
+            rec.ProductName.toUpperCase().includes(
+              this.searchProduct.toUpperCase()
+            ) ||
+            rec.ProductDescription.toUpperCase().includes(
+              this.searchProduct.toUpperCase()
+            )
+          );
+        } else {
+          return rec;
+        }
+      });
+    },
+    computedPageRow() {
+      switch (this.$vuetify.breakpoint.name) {
+        case "xl": {
+          return 12;
+        }
+        case "lg": {
+          return 8;
+        }
+        case "md": {
+          return 9;
+        }
+        case "sm": {
+          return 6;
+        }
+        default: {
+          return 5;
+        }
+      }
+    },
+    pageLength() {
+      const length = this.computedProductItems.length;
+      const row = this.computedPageRow;
+      return Math.ceil(length / row);
+    },
+    pageData() {
+      const start = (this.pageNumber - 1) * this.computedPageRow;
+      const end = start + this.computedPageRow;
+      return this.computedProductItems.slice(start, end);
+    },
   },
 };
 </script>
@@ -130,8 +204,9 @@ Footer
 <style>
 .center {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto;
+  /* margin-left: auto;
+  margin-right: auto; */
   width: 50%;
 }
 
