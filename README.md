@@ -35,4 +35,4 @@
 ## 6.) Here are the fields that you need. After you inserted the fields, simply click save on the bottom right
 ![alt text](https://user-images.githubusercontent.com/60958454/117926522-7bfbd780-b32b-11eb-9ab6-e75e098bf5f5.png)
 
-r
+## 7.) You can now run the webpage with server.
