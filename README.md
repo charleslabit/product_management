@@ -6,7 +6,7 @@
 ## Prerequisites
 ##### Check if npm is installed
 #####     npm --version
-##### If not yet installed, go to this link to download. https://nodejs.org/en/download/   
+##### If not yet installed, go to this link to download. https://nodejs.org/en/download/ 
 <br>
 <br>
    
@@ -15,10 +15,10 @@
 ##### git clone https://github.com/charleslabit/product-management.git
 
 ##### 2.) In client folder run npm install
-##### 3.) After the npm install run yarn serve
+##### 3.) After the npm install, run npm run serve or yarn serve (if yarn is installed)
 
 ##### 4.) In server folder run npm install
-##### 5.) After the npm install run nodemon
+##### 5.) After the npm install, run nodemon
 
 <br><br>
    
@@ -35,4 +35,4 @@
 ## 6.) Here are the fields that you need. After you inserted the fields, simply click save on the bottom right
 ![alt text](https://user-images.githubusercontent.com/60958454/117926522-7bfbd780-b32b-11eb-9ab6-e75e098bf5f5.png)
 
-## 7.) You can now run the webpage with server.
+## 7.) You can now run the webpage with server. ^_^
