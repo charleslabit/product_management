@@ -1,7 +1,7 @@
 # product-management
 
 ## Getting Started
-<br>These instructions will get you a copy of the project and run the server side.
+<br>These instructions will get you a copy of the project and how to run the server side.
 <br>
 ## Prerequisites
 ##### Check if npm is installed
