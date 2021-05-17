@@ -1,6 +1,7 @@
 <template>
   <div id="product" class="my-10">
-    <v-hover v-slot:default="{ hover }">
+    <Carousel></Carousel>
+    <!-- <v-hover v-slot:default="{ hover }">
       <v-carousel
         interval="5000"
         :cycle="hover ? false : true"
@@ -15,7 +16,7 @@
           <v-img :src="item.ProductPhoto" class="mx-auto center"></v-img>
         </v-carousel-item>
       </v-carousel>
-    </v-hover>
+    </v-hover> -->
 
     <h1 class="text-center text-h2 font-weight-thin py-10">Latest Product</h1>
     <v-text-field
@@ -41,11 +42,10 @@
         <v-tooltip bottom>
           <template v-slot:activator="{ on, attrs }">
             <v-card v-on="on" v-bind="attrs" flat class="ma-3">
-              <div style="width: 300px; height: 200px">
+              <div class="productImgContainer">
                 <v-img
                   :src="item.ProductPhoto"
-                  class="mx-auto"
-                  style="height: 200px"
+                  style="max-width: 100%; max-height: 100%"
                 >
                 </v-img>
               </div>
@@ -98,9 +98,8 @@
       :total-visible="5"
       prev-icon="mdi-menu-left"
       next-icon="mdi-menu-right"
+      class="mb-16 pb-16"
     ></v-pagination>
-    <br />
-    <br />
     <Footer />>
   </div>
 </template>
@@ -108,9 +107,11 @@
 <script>
 import axios from "axios";
 import Footer from "../components/Footer";
+import Carousel from "../components/Carousel.vue";
 export default {
   components: {
     Footer,
+    Carousel,
   },
   data: () => ({
     productItems: [],
@@ -147,11 +148,11 @@ export default {
     },
   },
   computed: {
-    featuredProduct() {
-      return this.productItems.filter((rec) => {
-        return rec.isFeatured;
-      });
-    },
+    // featuredProduct() {
+    //   return this.productItems.filter((rec) => {
+    //     return rec.isFeatured;
+    //   });
+    // },
     computedProductItems() {
       return this.productItems.filter((rec) => {
         if (this.searchProduct) {
@@ -205,9 +206,13 @@ export default {
 .center {
   display: block;
   margin: auto;
-  /* margin-left: auto;
-  margin-right: auto; */
   width: 50%;
+}
+.productImgContainer {
+  height: 200px;
+  width: 300px;
+  margin: auto;
+  display: block;
 }
 
 #truncate-text-name {

@@ -1,15 +1,21 @@
 <template>
   <v-footer color="primary lighten-1" padless absolute>
     <v-row justify="center" no-gutters>
-      <v-row justify="center" >
+      <v-row justify="center">
         <v-list v-for="(item, i) in icons" :key="i" color="transparent">
-          <v-list-item :href="item.href">
-            <v-icon  color="white">{{ item.icon }}</v-icon>
-          </v-list-item> 
+          <v-list-item :href="item.href" :target="item.target">
+            <v-icon color="white">{{ item.icon }}</v-icon>
+          </v-list-item>
         </v-list>
       </v-row>
-      <v-col class="primary lighten-2 py-4 text-center white--text" cols="12">
-        {{ new Date().getFullYear() }} — <strong>Awesome Lab Inc.</strong>
+      <v-col class="primary lighten-2 pt-3 text-center white--text" cols="12">
+        <strong>Charles Kenneth C. Labit</strong>
+      </v-col>
+      <v-col class="primary lighten-2 text-center white--text" cols="12">
+        <strong> 📧 charleslabit@gmail.com</strong>
+      </v-col>
+      <v-col class="primary lighten-2 pb-4 text-center white--text" cols="12">
+        <strong> 📱 0947-546-8235</strong>
       </v-col>
     </v-row>
   </v-footer>
@@ -32,7 +38,7 @@ export default {
       },
       {
         icon: "mdi-linkedin",
-        href: "https://www.linkedin.com/in/charles-kenneth-labit-731a941b2/",
+        href: "https://www.linkedin.com/in/charles-kenneth-labit",
         target: "_blank",
       },
       {
